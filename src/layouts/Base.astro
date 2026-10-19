@@ -1,5 +1,5 @@
 ---
-import { description, shop } from "../data/site";
+import { description, menu, shop, siteUrl, title as defaultTitle } from "../data/site";
 import "lenis/dist/lenis.css";
 import "../styles/global.scss";
 
@@ -9,9 +9,55 @@ interface Props {
 }
 
 const {
-	title = `${shop.name} | ${shop.kana}`,
+	title = defaultTitle,
 	description: pageDescription = description,
 } = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site ?? siteUrl).href;
+const image = new URL("/ogp.png", Astro.site ?? siteUrl).href;
+const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+
+const jsonLd = {
+	"@context": "https://schema.org",
+	"@type": "BarOrPub",
+	name: shop.name,
+	alternateName: shop.kana,
+	url: canonical,
+	image,
+	description: pageDescription,
+	servesCuisine: "日本料理",
+	priceRange: "¥",
+	currenciesAccepted: "JPY",
+	paymentAccepted: shop.payment,
+	address: {
+		"@type": "PostalAddress",
+		postalCode: shop.postalCode,
+		addressRegion: "東京都",
+		addressLocality: "北区",
+		streetAddress: "上十条1-15-9 平成不動産ビル 3階",
+		addressCountry: "JP",
+	},
+	openingHoursSpecification: {
+		"@type": "OpeningHoursSpecification",
+		dayOfWeek: days,
+		opens: "17:00",
+		closes: "23:30",
+	},
+	hasMenu: {
+		"@type": "Menu",
+		name: "看板メニュー",
+		hasMenuItem: menu.map((item) => ({
+			"@type": "MenuItem",
+			name: item.name,
+			offers: {
+				"@type": "Offer",
+				price: item.price.replace(/[^\d]/g, ""),
+				priceCurrency: "JPY",
+			},
+		})),
+	},
+	sameAs: [shop.instagram],
+};
 ---
 
 <!doctype html>
@@ -22,19 +68,24 @@ const {
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 		<meta name="description" content={pageDescription} />
+		<link rel="canonical" href={canonical} />
 		<meta name="theme-color" content="#16324F" />
 		<link rel="icon" href="/favicon.ico" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
 		<meta property="og:type" content="website" />
 		<meta property="og:locale" content="ja_JP" />
+		<meta property="og:url" content={canonical} />
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={pageDescription} />
-		<meta property="og:image" content="/ogp.png" />
+		<meta property="og:image" content={image} />
+		<meta property="og:image:alt" content={`${shop.name}の看板`} />
 		<meta property="og:site_name" content={shop.name} />
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:title" content={title} />
 		<meta name="twitter:description" content={pageDescription} />
-		<meta name="twitter:image" content="/ogp.png" />
+		<meta name="twitter:image" content={image} />
+		<meta name="twitter:image:alt" content={`${shop.name}の看板`} />
+		<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link

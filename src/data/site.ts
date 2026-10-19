@@ -49,5 +49,9 @@ export const nav = [
 	{ href: "#place", label: "場所" },
 ];
 
+export const siteUrl = "https://jujostand-b-and-b.pages.dev";
+
+export const title = "十条STAND B&B｜十条駅徒歩2分の立ち飲み";
+
 export const description =
-	"十条駅徒歩2分、平成不動産ビル3階の立ち飲み屋 十条STAND B&B。手作り創作料理と新鮮なお魚、こだわりの日本酒。17:00–23:30、不定休。18席、貸切あり。";
+	"東京都北区上十条、十条駅徒歩2分の立ち飲み屋 十条STAND B&B。平成不動産ビル3階。手作り創作料理と新鮮なお魚、こだわりの日本酒。17:00–23:30、不定休。18席、貸切あり。";

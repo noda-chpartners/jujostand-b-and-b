@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://jujostand-b-and-b.pages.dev/sitemap-index.xml
