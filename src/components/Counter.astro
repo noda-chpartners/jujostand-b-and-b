@@ -1,0 +1,50 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+import { menu, type MenuPhoto } from "../data/site";
+import nikusushi from "../assets/LINE_ALBUM_20261015_261019_9.jpg";
+import sashimi from "../assets/LINE_ALBUM_20261015_261019_8.jpg";
+import karamen from "../assets/S__24870946_0.jpg";
+import harami from "../assets/LINE_ALBUM_20261015_261019_10.jpg";
+
+const photos: Record<MenuPhoto, ImageMetadata> = {
+	nikusushi,
+	sashimi,
+	karamen,
+	harami,
+};
+
+const alts: Record<MenuPhoto, string> = {
+	nikusushi: "肉寿司",
+	sashimi: "刺身",
+	karamen: "辛麺",
+	harami: "ハラミステーキ",
+};
+---
+
+<section class="counter" id="dishes" aria-labelledby="dishes-title">
+	<h2 id="dishes-title" class="visually-hidden">看板メニュー</h2>
+	<ul class="counter-list">
+		{
+			menu.map((item) => (
+				<li class="counter-row">
+					{item.photo ? (
+						<Image
+							class="plate"
+							data-plate
+							data-size={item.size}
+							src={photos[item.photo]}
+							alt={alts[item.photo]}
+							widths={[160, 280]}
+							sizes="(max-width: 1024px) 80px, 124px"
+						/>
+					) : (
+						<span class="plate-gap" aria-hidden="true"></span>
+					)}
+					<p class="counter-name">{item.name}</p>
+					<p class="counter-price">{item.price}</p>
+				</li>
+			))
+		}
+	</ul>
+</section>

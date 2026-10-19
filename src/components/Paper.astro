@@ -1,0 +1,62 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+import DishStrip from "./DishStrip.astro";
+import foodMenu from "../assets/menu02.jpg";
+import drinkMenu from "../assets/menu01.png";
+import sake from "../assets/S__24870939_0.jpg";
+import bottles from "../assets/LINE_ALBUM_20261015_261019_7.jpg";
+import cider from "../assets/LINE_ALBUM_20261015_261019_20.jpg";
+import highball from "../assets/LINE_ALBUM_20261015_261019_25.jpg";
+import sapporo from "../assets/LINE_ALBUM_20261015_261019_31.jpg";
+import yebisu from "../assets/LINE_ALBUM_20261015_261019_32.jpg";
+
+const drinks: { src: ImageMetadata; alt: string }[] = [
+	{ src: sake, alt: "雪の茅舎、紀土、亀齢の日本酒" },
+	{ src: bottles, alt: "日本酒の一升瓶" },
+	{ src: cider, alt: "ご当地サイダー" },
+	{ src: highball, alt: "緑茶のハイボール" },
+	{ src: sapporo, alt: "サッポロラガー" },
+	{ src: yebisu, alt: "エビスビール" },
+];
+---
+
+<section class="paper paper--food" aria-labelledby="food-menu-title">
+	<h2 id="food-menu-title" class="visually-hidden">料理メニュー</h2>
+	<figure class="paper-sheet paper-sheet--food">
+		<Image
+			src={foodMenu}
+			alt="手書きの料理メニュー。おつまみ、刺身、焼き、揚げ、食事、デザート。"
+			widths={[720, 1100, 1500]}
+			sizes="(max-width: 1024px) 92vw, 860px"
+		/>
+	</figure>
+	<DishStrip />
+</section>
+
+<section class="paper paper--drink" id="drink" aria-labelledby="drink-title">
+	<h2 id="drink-title" class="visually-hidden">お酒</h2>
+	<figure class="paper-sheet paper-sheet--drink">
+		<Image
+			src={drinkMenu}
+			alt="手書きのドリンクメニュー。ビール、ハイボール、サワー、日本酒、焼酎、ワイン、梅酒、ご当地サイダー。"
+			widths={[720, 1100, 1500]}
+			sizes="(max-width: 1024px) 92vw, 860px"
+		/>
+		<span class="paper-corner" aria-hidden="true"></span>
+	</figure>
+	<ul class="dish-strip">
+		{
+			drinks.map((item) => (
+				<li>
+					<Image
+						src={item.src}
+						alt={item.alt}
+						widths={[320, 520]}
+						sizes="220px"
+					/>
+				</li>
+			))
+		}
+	</ul>
+</section>

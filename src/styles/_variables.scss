@@ -1,0 +1,15 @@
+$wood: #e7d3bc;
+$paper: #f6f1e8;
+$ink: #1c1916;
+$navy: #16324f;
+$orange: #e07a3a;
+$bp: 1024px;
+
+$font-round: "Zen Maru Gothic", "Hiragino Maru Gothic ProN", sans-serif;
+$font-mincho: "Shippori Mincho", "Yu Mincho", serif;
+
+@mixin below-tablet {
+	@media (max-width: $bp) {
+		@content;
+	}
+}

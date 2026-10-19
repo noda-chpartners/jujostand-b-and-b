@@ -1,0 +1,74 @@
+@use "variables" as *;
+
+.paper {
+	position: relative;
+
+	@include below-tablet {
+		padding-left: 1.1rem;
+		padding-right: 1.1rem;
+	}
+}
+
+.paper--food {
+	padding: 4vh 0 2vh;
+
+	@include below-tablet {
+		padding-top: 2vh;
+		padding-bottom: 1vh;
+	}
+}
+
+.paper--drink {
+	padding: 6vh 0 14vh;
+
+	@include below-tablet {
+		padding-bottom: 8vh;
+	}
+}
+
+.paper-sheet {
+	position: relative;
+	width: min(860px, 92vw);
+	margin-inline: auto;
+	background: $paper;
+	box-shadow: 0 22px 48px rgba($ink, 0.16);
+
+	img {
+		width: 100%;
+		height: auto;
+	}
+
+	@include below-tablet {
+		width: 100%;
+	}
+}
+
+.paper-sheet--food {
+	width: min(860px, calc(100% - 8vw));
+
+	@include below-tablet {
+		width: 100%;
+	}
+}
+
+.paper-sheet--drink {
+	width: min(860px, 92vw);
+	margin-inline: auto;
+
+	@include below-tablet {
+		width: 100%;
+	}
+}
+
+.paper-corner {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: 0 0 84px 84px;
+	border-color: transparent transparent $orange transparent;
+	pointer-events: none;
+}
+

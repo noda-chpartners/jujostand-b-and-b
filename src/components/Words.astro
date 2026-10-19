@@ -1,0 +1,11 @@
+---
+import { copy } from "../data/site";
+---
+
+<section class="words">
+	<h2 class="words-lead">{copy.lead}</h2>
+	<div class="words-body">
+		{copy.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+		<p class="words-scenes">{copy.scenes}</p>
+	</div>
+</section>

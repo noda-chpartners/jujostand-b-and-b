@@ -1,0 +1,21 @@
+---
+import { Image } from "astro:assets";
+import { shop } from "../data/site";
+import entrance from "../assets/S__24870949.jpg";
+---
+
+<section class="opening" id="top">
+	<h1 class="visually-hidden">{shop.name}</h1>
+	<div class="opening-circle" data-circle>
+		<Image
+			src={entrance}
+			alt="緑の壁に掲げた十条STAND B&Bの看板。立ち飲み、3階。"
+			widths={[640, 960, 1400]}
+			sizes="(max-width: 1024px) 86vw, 78vh"
+		/>
+	</div>
+	<p class="opening-meta">
+		<span>{shop.hours}</span>
+		<span>{shop.station}</span>
+	</p>
+</section>

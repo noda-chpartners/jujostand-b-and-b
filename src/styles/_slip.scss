@@ -1,0 +1,94 @@
+@use "variables" as *;
+
+.slip-card {
+	width: min(26rem, calc(100% - 2.4rem));
+	margin: 2rem auto 3.5rem;
+	padding: 0;
+}
+
+.slip-address,
+.slip-lines {
+	margin: 0;
+}
+
+.slip-address {
+	font-size: clamp(1.15rem, 2vw, 1.45rem);
+	line-height: 1.7;
+	letter-spacing: 0.04em;
+}
+
+.slip-postal {
+	display: block;
+	margin-bottom: 0.35rem;
+	font-size: 0.95rem;
+	letter-spacing: 0.12em;
+}
+
+.slip-lines {
+	margin-top: 1.6rem;
+	padding: 0;
+	list-style: none;
+	font-size: 1.05rem;
+	line-height: 1.9;
+}
+
+.map-band {
+	position: relative;
+	height: 320px;
+	background: #d7c4ae;
+
+	iframe {
+		width: 100%;
+		height: 100%;
+		border: 0;
+	}
+}
+
+.map-open {
+	position: absolute;
+	right: 0.8rem;
+	bottom: 0.8rem;
+	padding: 0.45rem 0.8rem;
+	background: $paper;
+	color: $ink;
+	font-size: 0.85rem;
+	letter-spacing: 0.06em;
+	text-decoration: none;
+}
+
+.colophon {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	padding: 2.5rem 8vw 3rem;
+
+	@include below-tablet {
+		padding: 2rem 1.35rem 2.6rem;
+	}
+}
+
+.colophon-mark {
+	width: 3.4rem;
+	height: 3.4rem;
+	border-radius: 50%;
+	overflow: hidden;
+	background: #000;
+	flex: none;
+
+	img {
+		width: 100%;
+		height: 100%;
+		object-fit: contain;
+		transform: scale(1.06);
+	}
+}
+
+.colophon-name {
+	margin: 0;
+	font-size: 1rem;
+	letter-spacing: 0.08em;
+}
+
+.colophon a {
+	text-decoration: none;
+}

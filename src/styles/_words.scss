@@ -1,0 +1,35 @@
+@use "variables" as *;
+
+.words {
+	padding: 14vh 8vw 10vh;
+
+	@include below-tablet {
+		padding: 10vh 1.25rem 8vh;
+	}
+}
+
+.words-lead {
+	margin: 0 0 0.45em;
+	max-width: 12em;
+	font-family: $font-mincho;
+	font-weight: 500;
+	font-size: clamp(2.6rem, 7.4vw, 6.4rem);
+	line-height: 1.18;
+	letter-spacing: 0.04em;
+}
+
+.words-body {
+	max-width: 38rem;
+
+	p {
+		margin: 0 0 1.15em;
+		font-size: clamp(1rem, 1.5vw, 1.15rem);
+		font-weight: 500;
+		line-height: 2.05;
+	}
+}
+
+.words-scenes {
+	margin-top: 0.4em;
+	letter-spacing: 0.08em;
+}

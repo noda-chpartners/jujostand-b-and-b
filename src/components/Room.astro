@@ -1,0 +1,21 @@
+---
+import { Image } from "astro:assets";
+import { copy, shop } from "../data/site";
+import room from "../assets/S__24870948_0.jpg";
+---
+
+<section class="room" id="room" aria-labelledby="room-title">
+	<h2 id="room-title" class="visually-hidden">店内</h2>
+	<Image
+		class="room-photo"
+		src={room}
+		alt="丸いハイテーブルが奥の壁まで並ぶ店内"
+		widths={[800, 1400, 2000]}
+		sizes="100vw"
+	/>
+	<div class="room-note">
+		<p class="room-stat">{shop.seats}</p>
+		<p class="room-stat">{shop.privateBooking}</p>
+		<p class="room-welcome">{copy.welcome}</p>
+	</div>
+</section>

@@ -1,0 +1,58 @@
+@use "variables" as *;
+
+.feature {
+	padding: 0 0 8vh;
+}
+
+.feature figure {
+	margin: 0;
+}
+
+.feature img {
+	width: 100%;
+	object-fit: cover;
+	object-position: center;
+}
+
+.feature-wide img {
+	height: 62vh;
+}
+
+.feature-pair img {
+	height: 42vh;
+}
+
+.feature-pair {
+	display: grid;
+	grid-template-columns: 1.35fr 0.85fr;
+	gap: 0.7rem;
+	padding: 0.7rem 4vw 0;
+
+	@include below-tablet {
+		grid-template-columns: 1fr;
+		padding-left: 1rem;
+		padding-right: 1rem;
+	}
+}
+
+.dish-strip {
+	display: flex;
+	flex-wrap: nowrap;
+	gap: 0.8rem;
+	margin: 0;
+	padding: 5vh 4vw 2vh;
+	overflow-x: auto;
+	list-style: none;
+
+	li {
+		flex: none;
+		height: 220px;
+	}
+
+	img {
+		display: block;
+		width: auto;
+		max-width: none;
+		height: 220px;
+	}
+}

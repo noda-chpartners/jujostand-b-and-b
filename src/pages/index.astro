@@ -1,16 +1,29 @@
 ---
+import Base from "../layouts/Base.astro";
+import EdgeNav from "../components/EdgeNav.astro";
+import Opening from "../components/Opening.astro";
+import Words from "../components/Words.astro";
+import Counter from "../components/Counter.astro";
+import Plates from "../components/Plates.astro";
+import Paper from "../components/Paper.astro";
+import Room from "../components/Room.astro";
+import Slip from "../components/Slip.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Base>
+	<EdgeNav />
+	<main>
+		<Opening />
+		<Words />
+		<Counter />
+		<Plates />
+		<Paper />
+		<Room />
+		<Slip />
+	</main>
+</Base>
+
+<script>
+	import { initMotion } from "../scripts/motion";
+	initMotion();
+</script>
