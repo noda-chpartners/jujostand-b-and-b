@@ -47,32 +47,18 @@
 .plate {
 	width: 6.4rem;
 	height: 6.4rem;
+	aspect-ratio: 1;
 	border-radius: 50%;
 	object-fit: cover;
-
-	&[data-size="lg"] {
-		width: 7.7rem;
-		height: 7.7rem;
-	}
 
 	@include below-tablet {
 		width: 72px;
 		height: 72px;
-
-		&[data-size="lg"] {
-			width: 80px;
-			height: 80px;
-		}
 	}
 
 	@media (max-width: 480px) {
 		width: 52px;
 		height: 52px;
-
-		&[data-size="lg"] {
-			width: 58px;
-			height: 58px;
-		}
 	}
 }
 

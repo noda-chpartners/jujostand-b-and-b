@@ -6,12 +6,14 @@ import nikusushi from "../assets/LINE_ALBUM_20261015_261019_9.jpg";
 import sashimi from "../assets/LINE_ALBUM_20261015_261019_8.jpg";
 import karamen from "../assets/S__24870946_0.jpg";
 import harami from "../assets/LINE_ALBUM_20261015_261019_10.jpg";
+import kaki from "../assets/1792459059.png";
 
 const photos: Record<MenuPhoto, ImageMetadata> = {
 	nikusushi,
 	sashimi,
 	karamen,
 	harami,
+	kaki,
 };
 
 const alts: Record<MenuPhoto, string> = {
@@ -19,6 +21,7 @@ const alts: Record<MenuPhoto, string> = {
 	sashimi: "刺身",
 	karamen: "辛麺",
 	harami: "ハラミステーキ",
+	kaki: "生牡蠣",
 };
 ---
 
@@ -32,7 +35,6 @@ const alts: Record<MenuPhoto, string> = {
 						<Image
 							class="plate"
 							data-plate
-							data-size={item.size}
 							src={photos[item.photo]}
 							alt={alts[item.photo]}
 							widths={[160, 280]}

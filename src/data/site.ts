@@ -25,21 +25,20 @@ export const copy = {
 	welcome: "おひとり様でも、仲間とわいわいでも大歓迎",
 };
 
-export type MenuPhoto = "nikusushi" | "sashimi" | "karamen" | "harami";
+export type MenuPhoto = "nikusushi" | "sashimi" | "karamen" | "harami" | "kaki";
 
 export type MenuItem = {
 	name: string;
 	price: string;
 	photo: MenuPhoto | null;
-	size: "md" | "lg";
 };
 
 export const menu: MenuItem[] = [
-	{ name: "肉寿司", price: "390円", photo: "nikusushi", size: "md" },
-	{ name: "お任せお刺身盛り合わせ", price: "800円", photo: "sashimi", size: "md" },
-	{ name: "辛麺", price: "1,200円", photo: "karamen", size: "md" },
-	{ name: "ハラミステーキ", price: "1,390円", photo: "harami", size: "lg" },
-	{ name: "生牡蠣", price: "400円", photo: null, size: "md" },
+	{ name: "肉寿司", price: "390円", photo: "nikusushi" },
+	{ name: "お任せお刺身盛り合わせ", price: "800円", photo: "sashimi" },
+	{ name: "辛麺", price: "1,200円", photo: "karamen" },
+	{ name: "ハラミステーキ", price: "1,390円", photo: "harami" },
+	{ name: "生牡蠣", price: "400円", photo: "kaki" },
 ];
 
 export const nav = [
