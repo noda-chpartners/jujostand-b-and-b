@@ -3,7 +3,7 @@ import { Image } from "astro:assets";
 import type { ImageMetadata } from "astro";
 import { menu, type MenuPhoto } from "../data/site";
 import nikusushi from "../assets/LINE_ALBUM_20261015_261019_9.jpg";
-import sashimi from "../assets/LINE_ALBUM_20261015_261019_8.jpg";
+import sashimi from "../assets/1792472889.png";
 import karamen from "../assets/S__24870946_0.jpg";
 import harami from "../assets/LINE_ALBUM_20261015_261019_10.jpg";
 import kaki from "../assets/1792459059.png";
@@ -18,10 +18,26 @@ const photos: Record<MenuPhoto, ImageMetadata> = {
 
 const alts: Record<MenuPhoto, string> = {
 	nikusushi: "肉寿司",
-	sashimi: "刺身",
+	sashimi: "お任せお刺身盛り合わせ",
 	karamen: "辛麺",
 	harami: "ハラミステーキ",
 	kaki: "生牡蠣",
+};
+
+const focus: Record<MenuPhoto, string> = {
+	nikusushi: "center",
+	sashimi: "center 42%",
+	karamen: "center 58%",
+	harami: "center",
+	kaki: "center 60%",
+};
+
+const tight: Record<MenuPhoto, boolean> = {
+	nikusushi: false,
+	sashimi: false,
+	karamen: true,
+	harami: false,
+	kaki: true,
 };
 ---
 
@@ -32,14 +48,16 @@ const alts: Record<MenuPhoto, string> = {
 			menu.map((item) => (
 				<li class="counter-row">
 					{item.photo ? (
-						<Image
-							class="plate"
-							data-plate
-							src={photos[item.photo]}
-							alt={alts[item.photo]}
-							widths={[160, 280]}
-							sizes="(max-width: 1024px) 80px, 124px"
-						/>
+						<span class:list={["plate-frame", tight[item.photo] && "is-tight"]} data-plate>
+							<Image
+								class="plate"
+								src={photos[item.photo]}
+								alt={alts[item.photo]}
+								widths={[160, 280, 400]}
+								sizes="(max-width: 480px) 52px, (max-width: 1024px) 72px, 124px"
+								style={`object-position: ${focus[item.photo]}`}
+							/>
+						</span>
 					) : (
 						<span class="plate-gap" aria-hidden="true"></span>
 					)}

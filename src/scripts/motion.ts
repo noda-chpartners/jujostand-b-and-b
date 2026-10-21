@@ -6,6 +6,110 @@ gsap.registerPlugin(ScrollTrigger);
 
 let lenis: Lenis | null = null;
 
+const stripInterval = 4;
+const stripDuration = 0.8;
+
+function highlightStrip(strip: HTMLElement) {
+	const mark = () => {
+		const items = [...strip.children] as HTMLElement[];
+		if (!items.length) return;
+		const view = strip.getBoundingClientRect();
+		const mid = view.left + view.width / 2;
+		let active = items[0];
+		let best = Number.POSITIVE_INFINITY;
+		for (const item of items) {
+			const rect = item.getBoundingClientRect();
+			const dist = Math.abs(rect.left + rect.width / 2 - mid);
+			if (dist < best) {
+				best = dist;
+				active = item;
+			}
+		}
+		for (const item of items) item.classList.toggle("is-active", item === active);
+	};
+
+	mark();
+	strip.addEventListener("scroll", mark, { passive: true });
+	strip.addEventListener("scrollend", mark);
+	return () => {
+		strip.removeEventListener("scroll", mark);
+		strip.removeEventListener("scrollend", mark);
+	};
+}
+
+function autoStrip(strip: HTMLElement) {
+	const originals = [...strip.children] as HTMLElement[];
+	if (originals.length < 2) return () => {};
+
+	const clones = originals.map((item) => {
+		const clone = item.cloneNode(true) as HTMLElement;
+		clone.setAttribute("aria-hidden", "true");
+		strip.append(clone);
+		return clone;
+	});
+
+	let timer: gsap.core.Tween | null = null;
+	let tween: gsap.core.Tween | null = null;
+	let paused = false;
+
+	const loopWidth = () => {
+		const firstClone = strip.children[originals.length] as HTMLElement | undefined;
+		if (!firstClone) return 0;
+		return firstClone.offsetLeft - originals[0].offsetLeft;
+	};
+
+	const wrap = () => {
+		const width = loopWidth();
+		if (width > 0 && strip.scrollLeft >= width) strip.scrollLeft -= width;
+	};
+
+	const schedule = () => {
+		timer?.kill();
+		if (paused || document.hidden) return;
+		timer = gsap.delayedCall(stripInterval, () => {
+			const card = strip.querySelector<HTMLElement>("li");
+			const gap = Number.parseFloat(getComputedStyle(strip).columnGap) || 0;
+			const step = (card?.offsetWidth ?? 0) + gap;
+			if (step <= 1) {
+				schedule();
+				return;
+			}
+			wrap();
+			tween?.kill();
+			tween = gsap.to(strip, {
+				scrollLeft: strip.scrollLeft + step,
+				duration: stripDuration,
+				ease: "power2.inOut",
+				overwrite: "auto",
+				onComplete: wrap,
+			});
+			schedule();
+		});
+	};
+
+	const onVisibility = () => {
+		if (document.hidden) {
+			paused = true;
+			timer?.kill();
+			tween?.pause();
+			return;
+		}
+		paused = false;
+		tween?.resume();
+		schedule();
+	};
+
+	document.addEventListener("visibilitychange", onVisibility);
+	schedule();
+
+	return () => {
+		timer?.kill();
+		tween?.kill();
+		document.removeEventListener("visibilitychange", onVisibility);
+		clones.forEach((node) => node.remove());
+	};
+}
+
 function scrollToHash(hash: string) {
 	const target = document.querySelector<HTMLElement>(hash);
 	if (!target) return;
@@ -104,6 +208,8 @@ export function initMotion() {
 		});
 	}
 
+	[...document.querySelectorAll<HTMLElement>(".dish-strip")].forEach((strip) => highlightStrip(strip));
+
 	if (reduce) return;
 
 	lenis = new Lenis();
@@ -156,5 +262,12 @@ export function initMotion() {
 			);
 		}
 
+	});
+
+	mm.add("(min-width: 1025px)", () => {
+		const stops = [...document.querySelectorAll<HTMLElement>(".dish-strip")].map((strip) => autoStrip(strip));
+		return () => {
+			stops.forEach((stop) => stop());
+		};
 	});
 }

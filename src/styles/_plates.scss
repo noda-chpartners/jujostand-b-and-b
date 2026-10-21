@@ -1,58 +1,128 @@
 @use "variables" as *;
 
 .feature {
-	padding: 0 0 8vh;
+	padding: 0 0 0.4rem;
 }
 
 .feature figure {
 	margin: 0;
+	overflow: hidden;
+}
+
+.feature picture {
+	display: block;
 }
 
 .feature img {
 	width: 100%;
 	object-fit: cover;
-	object-position: center;
 }
 
 .feature-wide img {
-	height: 62vh;
-}
+	height: auto;
+	aspect-ratio: 1.75 / 1;
+	object-position: center 72%;
 
-.feature-pair img {
-	height: 42vh;
+	@include below-tablet {
+		aspect-ratio: 1.4 / 1;
+	}
 }
 
 .feature-pair {
 	display: grid;
-	grid-template-columns: 1.35fr 0.85fr;
-	gap: 0.7rem;
-	padding: 0.7rem 4vw 0;
+	grid-template-columns: 1.15fr 0.95fr;
+	gap: 0.4rem;
+	padding: 0.4rem 0.4rem 0;
 
 	@include below-tablet {
 		grid-template-columns: 1fr;
-		padding-left: 1rem;
-		padding-right: 1rem;
 	}
+}
+
+.feature-pair img {
+	height: min(50vh, 500px);
+
+	@include below-tablet {
+		height: auto;
+		aspect-ratio: 5 / 4;
+	}
+}
+
+.feature-yukke img {
+	object-fit: cover;
+	object-position: center;
+	object-view-box: inset(34% 0% 6% 0%);
+}
+
+.feature-uni img {
+	object-fit: cover;
+	object-position: center;
+	object-view-box: inset(18% 0% 22% 0%);
 }
 
 .dish-strip {
 	display: flex;
 	flex-wrap: nowrap;
-	gap: 0.8rem;
+	align-items: center;
+	gap: 0.55rem;
 	margin: 0;
-	padding: 5vh 4vw 2vh;
-	overflow-x: auto;
+	padding: 1.15rem 0.4rem;
+	overflow-x: hidden;
+	overflow-y: hidden;
 	list-style: none;
+	scrollbar-width: none;
+	-ms-overflow-style: none;
+
+	&::-webkit-scrollbar {
+		display: none;
+		height: 0;
+	}
+
+	@include below-tablet {
+		overflow-x: auto;
+		overflow-y: hidden;
+		scroll-snap-type: x mandatory;
+		scroll-padding-inline: 12vw;
+		padding-inline: 12vw;
+		-webkit-overflow-scrolling: touch;
+		overscroll-behavior-x: contain;
+	}
 
 	li {
 		flex: none;
-		height: 220px;
+		width: 16.25rem;
+		height: 19.5rem;
+		overflow: hidden;
+		transform: scale(0.86);
+		transform-origin: center center;
+		transition: transform 0.45s ease;
+		scroll-snap-align: center;
+
+		&.is-active {
+			transform: scale(1);
+		}
+	}
+
+	picture {
+		display: block;
+		width: 100%;
+		height: 100%;
 	}
 
 	img {
 		display: block;
-		width: auto;
+		width: 100%;
+		height: 100%;
 		max-width: none;
-		height: 220px;
+		object-fit: cover;
+		object-position: center 66%;
+		transform: scale(1.58);
+		transform-origin: center 66%;
 	}
+}
+
+.dish-strip--drink img {
+	object-position: center 46%;
+	transform: scale(1.08);
+	transform-origin: center 46%;
 }

@@ -1,7 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import { shop } from "../data/site";
-import logo from "../assets/favicon.png";
+import logo from "../assets/1792472895.png";
 
 const mapQuery = encodeURIComponent(shop.mapQuery);
 const mapEmbed = `https://maps.google.com/maps?q=${mapQuery}&hl=ja&z=16&output=embed`;
@@ -32,7 +32,7 @@ const mapHref = `https://www.google.com/maps/search/?api=1&query=${mapQuery}`;
 	</div>
 	<footer class="colophon">
 		<a class="colophon-mark" href="#top">
-			<Image src={logo} alt="" widths={[80, 120]} sizes="54px" />
+			<Image src={logo} alt="" widths={[96, 160]} sizes="54px" format="png" />
 		</a>
 		<div>
 			<p class="colophon-name">{shop.name}</p>
