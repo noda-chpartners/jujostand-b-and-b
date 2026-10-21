@@ -25,19 +25,19 @@ const alts: Record<MenuPhoto, string> = {
 };
 
 const focus: Record<MenuPhoto, string> = {
-	nikusushi: "center",
-	sashimi: "center 42%",
-	karamen: "center 58%",
-	harami: "center",
-	kaki: "center 60%",
+	nikusushi: "center 64%",
+	sashimi: "center 46%",
+	karamen: "center 66%",
+	harami: "center 56%",
+	kaki: "center 58%",
 };
 
-const tight: Record<MenuPhoto, boolean> = {
-	nikusushi: false,
-	sashimi: false,
-	karamen: true,
-	harami: false,
-	kaki: true,
+const zoom: Record<MenuPhoto, string> = {
+	nikusushi: "1.28",
+	sashimi: "1.08",
+	karamen: "1.34",
+	harami: "1.2",
+	kaki: "1.32",
 };
 ---
 
@@ -46,20 +46,18 @@ const tight: Record<MenuPhoto, boolean> = {
 	<ul class="counter-list">
 		{
 			menu.map((item) => (
-				<li class="counter-row">
-					{item.photo ? (
-						<span class:list={["plate-frame", tight[item.photo] && "is-tight"]} data-plate>
+				<li class="counter-card">
+					{item.photo && (
+						<span class="plate-frame">
 							<Image
 								class="plate"
 								src={photos[item.photo]}
 								alt={alts[item.photo]}
-								widths={[160, 280, 400]}
-								sizes="(max-width: 480px) 52px, (max-width: 1024px) 72px, 124px"
-								style={`object-position: ${focus[item.photo]}`}
+								widths={[480, 720, 960]}
+								sizes="(max-width: 680px) 92vw, 520px"
+								style={`object-position: ${focus[item.photo]}; transform-origin: ${focus[item.photo]}; --plate-zoom: ${zoom[item.photo]}`}
 							/>
 						</span>
-					) : (
-						<span class="plate-gap" aria-hidden="true"></span>
 					)}
 					<p class="counter-name">{item.name}</p>
 					<p class="counter-price">{item.price}</p>

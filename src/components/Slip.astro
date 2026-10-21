@@ -1,42 +1,23 @@
 ---
 import { Image } from "astro:assets";
+import { siInstagram } from "simple-icons";
 import { shop } from "../data/site";
 import logo from "../assets/1792472895.png";
-
-const mapQuery = encodeURIComponent(shop.mapQuery);
-const mapEmbed = `https://maps.google.com/maps?q=${mapQuery}&hl=ja&z=16&output=embed`;
-const mapHref = `https://www.google.com/maps/search/?api=1&query=${mapQuery}`;
 ---
 
-<section class="slip" id="place" aria-labelledby="place-title">
-	<h2 id="place-title" class="visually-hidden">場所</h2>
-	<div class="slip-card">
-		<p class="slip-address">
-			<span class="slip-postal">〒{shop.postalCode}</span>
-			{shop.addressLines[0]}<br />
-			{shop.addressLines[1]}
-		</p>
-		<ul class="slip-lines">
-			<li>{shop.station}</li>
-			<li>
-				{shop.hours}
-				<span>（{shop.hoursNote}）</span>
-			</li>
-			<li>{shop.closed}</li>
-			<li>{shop.payment}</li>
-		</ul>
-	</div>
-	<div class="map-band">
-		<iframe title="十条STAND B&Bの地図" src={mapEmbed} loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-		<a class="map-open" href={mapHref} target="_blank" rel="noopener noreferrer">地図を開く</a>
-	</div>
+<section class="slip" aria-label="店名">
 	<footer class="colophon">
-		<a class="colophon-mark" href="#top">
-			<Image src={logo} alt="" widths={[96, 160]} sizes="54px" format="png" />
-		</a>
-		<div>
+		<div class="colophon-brand">
+			<a class="colophon-mark" href="#top">
+				<Image src={logo} alt="" widths={[96, 160]} sizes="54px" format="png" />
+			</a>
 			<p class="colophon-name">{shop.name}</p>
-			<a href={shop.instagram} target="_blank" rel="noopener noreferrer">@{shop.instagramHandle}</a>
 		</div>
+		<a class="colophon-ig" href={shop.instagram} target="_blank" rel="noopener noreferrer">
+			<svg viewBox="0 0 24 24" aria-hidden="true">
+				<path fill={`#${siInstagram.hex}`} d={siInstagram.path}></path>
+			</svg>
+			<span class="visually-hidden">Instagram @{shop.instagramHandle}</span>
+		</a>
 	</footer>
 </section>

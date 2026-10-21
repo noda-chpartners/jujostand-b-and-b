@@ -2,54 +2,82 @@
 
 .room {
 	display: grid;
-	grid-template-columns: minmax(0, 1.4fr) minmax(16rem, 0.72fr);
+	grid-template-columns: minmax(0, 1fr) minmax(240px, 520px);
+	grid-template-areas:
+		"copy photo"
+		"map photo";
 	align-items: stretch;
+	column-gap: 1.25rem;
+	row-gap: 0.75rem;
+	width: min(1080px, calc(100% - 6vw));
+	margin: 1.25rem auto 0.35rem;
 
-	@include below-tablet {
+	@media (max-width: 680px) {
 		grid-template-columns: 1fr;
+		grid-template-areas:
+			"copy"
+			"photo"
+			"map";
+		row-gap: 0.85rem;
+		width: auto;
+		margin: 0.75rem 1.25rem 0.35rem;
 	}
+}
+
+.room-copy {
+	grid-area: copy;
+}
+
+.room-photo {
+	grid-area: photo;
+}
+
+.map-band {
+	grid-area: map;
+}
+
+.room-copy {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 1.15rem;
+	min-width: 0;
+}
+
+.room > picture {
+	display: block;
+	min-width: 0;
+	width: 100%;
 }
 
 .room-photo {
 	display: block;
 	width: 100%;
-	height: 100%;
-	min-height: 76vh;
-	object-fit: cover;
-	object-position: 22% 36%;
-
-	@include below-tablet {
-		min-height: 0;
-		height: 70vh;
-		object-position: 28% 34%;
-	}
+	height: auto;
+	object-fit: contain;
+	object-position: center;
+	object-view-box: none;
 }
 
 .room-note {
 	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: flex-start;
-	gap: 0.7rem;
-	padding: 2.2rem 5vw;
-
-	@include below-tablet {
-		gap: 0.4rem;
-		padding: 1.35rem 1.25rem 2.2rem;
-	}
+	flex-wrap: wrap;
+	align-items: baseline;
+	column-gap: 1.35rem;
+	row-gap: 0.15rem;
 }
 
 .room-stat {
 	margin: 0;
-	font-size: clamp(2rem, 4vw, 3.3rem);
+	font-size: clamp(1.35rem, 2.2vw, 1.85rem);
 	font-weight: 500;
 	line-height: 1.2;
 	letter-spacing: 0.06em;
 }
 
 .room-welcome {
-	margin: 0;
-	max-width: 22em;
-	font-size: clamp(1rem, 1.6vw, 1.2rem);
-	line-height: 1.8;
+	width: 100%;
+	margin: 0.15rem 0 0;
+	font-size: 0.95rem;
+	line-height: 1.6;
 }

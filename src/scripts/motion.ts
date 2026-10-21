@@ -198,16 +198,6 @@ export function initMotion() {
 		});
 	});
 
-	const brand = document.querySelector<HTMLElement>(".brand");
-	const openingMark = document.querySelector<HTMLElement>(".opening");
-	if (brand && openingMark) {
-		ScrollTrigger.create({
-			trigger: openingMark,
-			start: "bottom 72px",
-			toggleClass: { targets: brand, className: "is-compact" },
-		});
-	}
-
 	[...document.querySelectorAll<HTMLElement>(".dish-strip")].forEach((strip) => highlightStrip(strip));
 
 	if (reduce) return;
@@ -244,30 +234,7 @@ export function initMotion() {
 			);
 		}
 
-		const plates = gsap.utils.toArray<HTMLElement>("[data-plate]");
-		if (plates.length) {
-			gsap.fromTo(
-				plates,
-				{ rotation: (index) => [-5, -3, 3, 5][index] ?? 0 },
-				{
-					rotation: 0,
-					duration: 0.9,
-					ease: "power3.out",
-					scrollTrigger: {
-						trigger: "#dishes",
-						start: "top 78%",
-						toggleActions: "play none none none",
-					},
-				},
-			);
-		}
-
 	});
 
-	mm.add("(min-width: 1025px)", () => {
-		const stops = [...document.querySelectorAll<HTMLElement>(".dish-strip")].map((strip) => autoStrip(strip));
-		return () => {
-			stops.forEach((stop) => stop());
-		};
-	});
+	[...document.querySelectorAll<HTMLElement>(".dish-strip")].forEach((strip) => autoStrip(strip));
 }

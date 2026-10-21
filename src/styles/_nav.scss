@@ -5,31 +5,20 @@
 	z-index: 30;
 	top: 1rem;
 	left: 1rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.35rem;
 	width: 5.4rem;
-	height: calc(5.4rem + 0.35rem + 2.75rem);
-
-	&.is-compact {
-		width: calc(3.15rem + 0.45rem + 2.75rem);
-		height: 3.15rem;
-	}
 }
 
 .mark {
-	position: absolute;
-	top: 0;
-	left: 0;
 	display: block;
-	width: 5.4rem;
+	width: 100%;
 	height: 5.4rem;
 	border-radius: 50%;
 	overflow: hidden;
 	background: #fff;
-	transition: width 0.35s ease, height 0.35s ease;
-
-	.is-compact & {
-		width: 3.15rem;
-		height: 3.15rem;
-	}
 
 	img {
 		width: 100%;
@@ -41,9 +30,6 @@
 }
 
 .ig {
-	position: absolute;
-	top: calc(5.4rem + 0.35rem);
-	left: calc((5.4rem - 2.75rem) / 2);
 	display: grid;
 	place-items: center;
 	width: 2.75rem;
@@ -51,12 +37,6 @@
 	border-radius: 50%;
 	background: $navy;
 	color: $paper;
-	transition: top 0.35s ease, left 0.35s ease;
-
-	.is-compact & {
-		top: calc((3.15rem - 2.75rem) / 2);
-		left: calc(3.15rem + 0.45rem);
-	}
 
 	svg {
 		width: 1.15rem;
