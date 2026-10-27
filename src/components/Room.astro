@@ -24,6 +24,7 @@ const mapHref = `https://www.google.com/maps/search/?api=1&query=${mapQuery}`;
 			</p>
 			<ul class="slip-lines">
 				<li>{shop.station}</li>
+				<li>電話番号：<a href={`tel:${shop.phone.replace(/-/g, "")}`}>{shop.phone}</a></li>
 				<li>
 					{shop.hours}
 					<span>（{shop.hoursNote}）</span>

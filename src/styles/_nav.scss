@@ -148,4 +148,19 @@
 		letter-spacing: 0.08em;
 		text-decoration: none;
 	}
+
+	.overlay-phone {
+		display: flex;
+		align-items: center;
+		gap: 0.6rem;
+		margin-top: 1rem;
+		padding: 0.65rem 0.2rem;
+		border-top: 1px solid rgba($paper, 0.35);
+		font-size: clamp(1.1rem, 5vw, 1.5rem);
+		white-space: nowrap;
+
+		span {
+			font-size: 0.75rem;
+		}
+	}
 }

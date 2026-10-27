@@ -4,6 +4,7 @@ export const shop = {
 	postalCode: "114-0034",
 	addressLines: ["東京都北区上十条1-15-9", "平成不動産ビル 3階"],
 	station: "十条駅 徒歩2分",
+	phone: "070-1877-1956",
 	hours: "17:00–23:30",
 	hoursNote: "平日・土日祝とも",
 	closed: "不定休",

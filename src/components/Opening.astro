@@ -14,8 +14,13 @@ import entrance from "../assets/S__24870949.jpg";
 			sizes="(max-width: 1024px) 86vw, 78vh"
 		/>
 	</div>
-	<p class="opening-meta">
-		<span>{shop.hours}</span>
-		<span>{shop.station}</span>
-	</p>
+	<div class="opening-details">
+		<p class="opening-meta">
+			<span>{shop.hours}</span>
+			<span>{shop.station}</span>
+		</p>
+		<a class="opening-phone" href={`tel:${shop.phone.replace(/-/g, "")}`}>
+			<span>TEL</span> {shop.phone}
+		</a>
+	</div>
 </section>

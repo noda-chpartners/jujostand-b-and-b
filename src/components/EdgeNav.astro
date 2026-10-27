@@ -42,5 +42,8 @@ import logo from "../assets/1792472895.png";
 				<a href={item.href}>{item.label}</a>
 			))
 		}
+		<a class="overlay-phone" href={`tel:${shop.phone.replace(/-/g, "")}`}>
+			<span>TEL</span> {shop.phone}
+		</a>
 	</nav>
 </div>

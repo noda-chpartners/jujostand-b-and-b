@@ -18,7 +18,7 @@
 .opening-circle {
 	position: relative;
 	z-index: 2;
-	width: min(92vw, calc(100dvh - 6.6rem));
+	width: min(92vw, calc(100dvh - 12rem));
 	aspect-ratio: 1;
 	border-radius: 50%;
 	overflow: hidden;
@@ -32,16 +32,42 @@
 		object-position: 54% 42%;
 	}
 
-	@include below-tablet {
-		width: min(92vw, calc(100dvh - 6.6rem));
-	}
+}
+
+.opening-details {
+	position: relative;
+	z-index: 3;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.35rem;
+	flex: none;
 }
 
 .opening-meta {
 	display: flex;
+	flex-wrap: wrap;
 	justify-content: center;
-	gap: 1.75rem;
+	gap: 0.25rem 1.75rem;
 	margin: 0;
 	font-size: 0.95rem;
 	letter-spacing: 0.16em;
+}
+
+.opening-phone {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.6rem;
+	min-height: 2.75rem;
+	padding: 0.15rem 0.5rem;
+	font-size: clamp(1.1rem, 3.8vw, 1.35rem);
+	letter-spacing: 0.08em;
+	white-space: nowrap;
+	text-decoration: underline;
+	text-underline-offset: 0.25em;
+
+	span {
+		font-size: 0.75rem;
+	}
 }
